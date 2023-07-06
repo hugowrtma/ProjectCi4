@@ -31,6 +31,8 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 //Authentification Routes
 
+$routes->get('/register', 'AuthController::register');
+$routes->add('/register', 'AuthController::register');
 $routes->get('/', 'Home::index', ['filter' => 'auth']);
 $routes->get('/login', 'AuthController::login');
 $routes->add('/login', 'AuthController::login'); 
@@ -52,6 +54,14 @@ $routes->get('/produk', 'ProdukController::index', ['filter' => 'auth']);
 $routes->add('/produk', 'ProdukController::create', ['filter' => 'auth']);
 $routes->add('/produk/edit/(:any)', 'ProdukController::edit/$1', ['filter' => 'auth']);
 $routes->get('/produk/delete/(:any)', 'ProdukController::delete/$1', ['filter' => 'auth']);
+
+//Kelola-user Routes
+$routes->group('kelola-user', ['filter' => 'auth'], function($routes) {
+$routes->get('/', 'KelolaUserController::index');
+$routes->add('edit/(:any)', 'KelolaUserController::edit/$1');
+$routes->get('delete/(:any)', 'KelolaUserController::delete/$1');
+});
+
 
 /*
  * --------------------------------------------------------------------

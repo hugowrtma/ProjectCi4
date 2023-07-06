@@ -25,6 +25,12 @@
                     <td>
                         <a href="<?= base_url('kelola-user/edit/' . $user['id']) ?>" class="btn btn-primary">Edit</a>
                         <a href="<?= base_url('kelola-user/delete/' . $user['id']) ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">Delete</a>
+
+                        <?php if ($user['is_aktif']) : ?>
+                            <a href="<?= base_url('kelola-user/deactivate/' . $user['id']) ?>" class="btn btn-warning">Deactivate</a>
+                        <?php else : ?>
+                            <a href="<?= base_url('kelola-user/activate/' . $user['id']) ?>" class="btn btn-success">Activate</a>
+                        <?php endif; ?>
                     </td>
                 </tr>
             <?php endforeach; ?>
